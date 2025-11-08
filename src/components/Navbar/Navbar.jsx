@@ -4,19 +4,32 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 
 export default function Navbar(){
-    const { user, logout } = useContext(AuthContext);
+    const { user, userSignOut } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const links = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/reviews">All Reviews</NavLink></li>
-            <li><NavLink to="/add-review"><PlusCircle className='w-4 h-4'/>Add Review</NavLink></li>
-            <li><NavLink to="/my-reviews"><UserRound className='w-4 h-4'/>My Reviews</NavLink></li>
-            <li><NavLink to="/favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
+            {
+                user && <>
+                    <li><NavLink to="/add-review"><PlusCircle className='w-4 h-4'/>Add Review</NavLink></li>
+                    <li><NavLink to="/my-reviews"><UserRound className='w-4 h-4'/>My Reviews</NavLink></li>
+                    <li><NavLink to="/favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
+                </>
+            }
         </>
     );
 
+    const handleLogout = () => {
+        userSignOut()
+            .then(() => {
+                // user signed out
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
+    }
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -39,7 +52,19 @@ export default function Navbar(){
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ? <>
+                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                            <img className="rounded-full w-10 h-10 mr-3" src={user?.photoURL || user?.providerData?.[0]?.photoURL} alt="User image"/>
+                        </div>
+                        <button onClick={handleLogout} className="btn btn-primary">Logout</button>
+                    </> : <>
+                        <Link to="/login" className="btn btn-secondary mr-2">
+                            <span className="primary">Login</span>
+                        </Link>
+                        <Link to="/register" className="btn btn-primary">Register</Link>
+                    </>
+                }
             </div>
         </div>
     );

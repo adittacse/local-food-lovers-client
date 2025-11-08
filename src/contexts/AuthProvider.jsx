@@ -6,10 +6,7 @@ import { auth } from "../firebase/firebase.init.js";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({
-        displayName: "Aditta",
-        email: "adittacse@gmail.com",
-    });
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
