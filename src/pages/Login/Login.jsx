@@ -1,42 +1,15 @@
 import { useContext, useState } from "react";
+import AuthContext from "../../contexts/AuthContext.jsx";
 import { Link, useLocation, useNavigate } from "react-router";
-import AuthContext from "../contexts/AuthContext.jsx";
+import useAxios from "../../hooks/useAxios.jsx";
 
-const Register = () => {
+const Login = () => {
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
-    const { createUser, updateUser, setUser, googleSignIn } = useContext(AuthContext);
+    const { setUser, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-        const displayName = e.target.name.value;
-        const email = e.target.email.value;
-        const photo = e.target.photo.value;
-        const password = e.target.password.value;
-
-        setSuccess("");
-        setError("");
-
-        createUser(email, password)
-            .then((result) => {
-                updateUser({
-                    displayName: displayName, photoURL: photo
-                })
-                    .then(() => {
-                        setUser({...result.user, displayName: name, photoURL: photo});
-                        setSuccess("Registered successfully!");
-                        navigate(location?.state || "/", { replace: true });
-                    })
-                    .catch((error) => {
-                        setError(error.message);
-                    });
-            })
-            .catch((error) => {
-                setError(error.message);
-            });
-    }
+    const axios = useAxios();
 
     const handleGoogleLogin = () => {
         setSuccess("");
@@ -45,11 +18,20 @@ const Register = () => {
         googleSignIn()
             .then((result) => {
                 result.user.reload();
-                setUser(result.user);
-                setSuccess("Logged in successfully!");
-                navigate(location?.state || "/", { replace: true });
+                const newUser = {
+                    displayName: result.user.displayName,
+                    email: result.user.email,
+                    photoURL: result.user.photoURL
+                }
 
-                // create user in the database
+                axios.post("/users", newUser)
+                    .then(data => {
+                        if (data.data.insertedId || data.data.message === "User already exists.") {
+                            setUser(result.user);
+                            setSuccess("Logged in successfully!");
+                            navigate(location?.state || "/", {replace: true});
+                        }
+                    })
             })
             .catch((error) => {
                 setError(error.message);
@@ -61,26 +43,23 @@ const Register = () => {
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body">
                     <div className="text-center text-secondary">
-                        <h1 className="text-[32px] font-semibold">Register now!</h1>
+                        <h1 className="text-[32px] font-semibold">Login</h1>
                         <p className="mt-2 mb-4">
-                            Already have an account? <Link className="primary-text" to="/login">Login Now</Link>
+                            Don't have an account? <Link state={location?.state} className="primary-text" to="/register">Register Now</Link>
                         </p>
                     </div>
-                    <form onSubmit={handleRegister}>
+                    <form>
                         <fieldset className="fieldset">
-                            {/*name*/}
-                            <label className="label text-secondary">Name</label>
-                            <input name="name" type="text" className="input" placeholder="Your Name" />
                             {/*email*/}
                             <label className="label text-secondary">Email</label>
                             <input name="email" type="email" className="input" placeholder="Your Email" />
-                            {/*photo*/}
-                            <label className="label text-secondary">Image-URL</label>
-                            <input name="photo" type="text" className="input" placeholder="Your Image URL" />
                             {/*password*/}
                             <label className="label text-secondary">Password</label>
                             <input name="password" type="password" className="input" placeholder="******" />
-                            <button className="btn btn-primary font-semibold mt-4">Register</button>
+                            <div>
+                                <a className="link link-hover text-secondary">Forgot password?</a>
+                            </div>
+                            <button className="btn btn-primary font-semibold mt-4">Sign In</button>
                         </fieldset>
                     </form>
                     {
@@ -101,4 +80,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;

@@ -2,8 +2,9 @@ import React from 'react';
 import { createBrowserRouter } from "react-router";
 import Root from "../layouts/Root.jsx";
 import Home from "../pages/Home/Home.jsx";
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
+import Login from "../pages/Login/Login.jsx";
+import Register from "../pages/Register/Register.jsx";
+import AllReviews from "../pages/AllReviews/AllReviews.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const Router = createBrowserRouter([
             {
                 path: "register",
                 element: <Register />
+            },
+            {
+                path: "all-reviews",
+                element: <AllReviews />
             }
         ]
     },

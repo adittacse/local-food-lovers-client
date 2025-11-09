@@ -31,7 +31,7 @@ export default function Navbar(){
     const links = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/reviews">All Reviews</NavLink></li>
+            <li><NavLink to="/all-reviews">All Reviews</NavLink></li>
             {
                 user && <>
                     <li><NavLink to="/add-review"><PlusCircle className='w-4 h-4'/>Add Review</NavLink></li>
