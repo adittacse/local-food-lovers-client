@@ -1,14 +1,14 @@
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink } from "react-router";
 import { useEffect, useState } from "react";
 import { ChefHat, Heart, LogOut, PlusCircle, UserRound } from "lucide-react";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Moon, Sun } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function Navbar(){
     const [theme, setTheme] = useState("light");
     const { user, userSignOut } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const saved = localStorage.getItem("app-theme");
@@ -46,9 +46,20 @@ export default function Navbar(){
         userSignOut()
             .then(() => {
                 // user signed out
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Signed out",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
             .catch((error) => {
-                console.log(error.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${error.message}`,
+                });
             })
     }
 
@@ -65,7 +76,10 @@ export default function Navbar(){
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to="/" className="btn btn-ghost gap-2 text-xl font-extrabold">
+                    <ChefHat className="w-6 h-6 text-primary"/>
+                    <span>Local Food Lovers</span>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -75,16 +89,16 @@ export default function Navbar(){
             <div className="navbar-end">
                 <button
                     onClick={handleToggleTheme}
-                    className="btn btn-ghost btn-circle"
+                    className="btn btn-ghost btn-circle mr-2"
                     aria-label="Toggle theme"
                     title="Toggle theme"
                 >
-                    {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+                    {theme === "light" ? <Moon className="w-6 h-6" /> : <Sun className="w-6 h-6" />}
                 </button>
                 {
                     user ? <>
                         <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
-                            <img className="rounded-full w-10 h-10 mr-3" src={user?.photoURL || user?.providerData?.[0]?.photoURL} alt="User image"/>
+                            <img className="rounded-full w-10 h-10 mr-2" src={user?.photoURL || user?.providerData?.[0]?.photoURL} alt="User image"/>
                         </div>
                         <button onClick={handleLogout} className="btn btn-primary">Logout</button>
                     </> : <>
