@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure.jsx";
+import useAxios from "../../hooks/useAxios.jsx";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Link } from "react-router";
 import { MoveLeft } from "lucide-react";
@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 export default function AddReview() {
     const [submitting, setSubmitting] = useState(false);
     const { user } = useContext(AuthContext);
-    const axiosSecure = useAxiosSecure();
+    const axios = useAxios();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,7 +38,7 @@ export default function AddReview() {
 
         setSubmitting(true);
         try {
-            await axiosSecure.post("/reviews", newReview);
+            await axios.post("/reviews", newReview);
             Swal.fire({
                 position: "top-end",
                 icon: "success",
