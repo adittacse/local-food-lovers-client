@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { createBrowserRouter } from "react-router";
 import Root from "../layouts/Root.jsx";
 import Home from "../pages/Home/Home.jsx";
@@ -8,6 +8,7 @@ import AllReviews from "../pages/AllReviews/AllReviews.jsx";
 import AddReview from "../pages/AddReview/AddReview.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import ReviewDetails from "../pages/ReviewDetails/ReviewDetails.jsx";
+import MyReviews from "../pages/MyReviews/MyReviews.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -28,7 +29,6 @@ const Router = createBrowserRouter([
             },
             {
                 path: "all-reviews",
-                loader: () => fetch("http://localhost:3000/reviews"),
                 element: <AllReviews />
             },
             {
@@ -39,6 +39,10 @@ const Router = createBrowserRouter([
             {
                 path: "add-review",
                 element: <PrivateRoute><AddReview /></PrivateRoute>
+            },
+            {
+                path: "my-reviews",
+                element: <MyReviews />
             }
         ]
     },

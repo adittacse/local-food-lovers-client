@@ -1,32 +1,35 @@
 import { useEffect, useRef, useState } from "react";
-import { useLoaderData } from "react-router";
 import ReviewCard from "../../components/ReviewCard.jsx";
+import useAxios from "../../hooks/useAxios.jsx";
 
 const AllReviews = () => {
-    const data = useLoaderData();
-    const [reviews, setReviews] = useState(data);
+    const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
+    const axios = useAxios();
     const searchRef = useRef(null);
 
     useEffect(() => {
-        setReviews(data);
-        setLoading(false);
-    }, [data]);
+        axios.get("/reviews")
+            .then(data => {
+                setReviews(data.data);
+                setLoading(false);
+            })
+    }, []);
 
     const handleSearch = () => {
-        setLoading(true);
-        const text = searchRef.current.value.trim().toLowerCase();
-
-        setTimeout(() => {
-            if (text === "") {
-                setReviews(data);
-                setLoading(false);
-            } else {
-                const result = data.filter(review => review.foodName.toLowerCase().includes(text));
-                setReviews(result);
-                setLoading(false);
-            }
-        }, 0);
+        // setLoading(true);
+        // const text = searchRef.current.value.trim().toLowerCase();
+        //
+        // setTimeout(() => {
+        //     if (text === "") {
+        //         setReviews(data);
+        //         setLoading(false);
+        //     } else {
+        //         const result = data.filter(review => review.foodName.toLowerCase().includes(text));
+        //         setReviews(result);
+        //         setLoading(false);
+        //     }
+        // }, 0);
     }
 
     if (reviews.length === 0) {
