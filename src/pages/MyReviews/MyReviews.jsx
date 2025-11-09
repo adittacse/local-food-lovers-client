@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import useAxios from "../../hooks/useAxios.jsx";
 import ReviewCard from "../../components/ReviewCard.jsx";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const MyReviews = () => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
     const axios = useAxios();
 
@@ -13,14 +15,19 @@ const MyReviews = () => {
             axios.get(`/reviews?reviewerEmail=${user.email}`)
                 .then(data => {
                     setData(data.data);
+                    setLoading(false);
                 });
         }
     }, [user]);
 
+    if (loading) {
+        return <Loading />
+    }
+
     return (
         <div className="py-20">
             <h1 className="text-3xl font-bold text-center mb-6">My Reviews</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center justify-center mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     data.map(review => <ReviewCard key={review._id} review={review} />)
                 }

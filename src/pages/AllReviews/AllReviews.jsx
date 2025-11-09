@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ReviewCard from "../../components/ReviewCard.jsx";
 import useAxios from "../../hooks/useAxios.jsx";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const AllReviews = () => {
     const [reviews, setReviews] = useState([]);
@@ -17,23 +18,30 @@ const AllReviews = () => {
     }, []);
 
     const handleSearch = () => {
-        // setLoading(true);
-        // const text = searchRef.current.value.trim().toLowerCase();
-        //
-        // setTimeout(() => {
-        //     if (text === "") {
-        //         setReviews(data);
-        //         setLoading(false);
-        //     } else {
-        //         const result = data.filter(review => review.foodName.toLowerCase().includes(text));
-        //         setReviews(result);
-        //         setLoading(false);
-        //     }
-        // }, 0);
+        setLoading(true);
+        const text = searchRef.current.value.trim().toLowerCase();
+
+        setTimeout(() => {
+            if (text === "") {
+                axios.get("/reviews")
+                    .then(data => {
+                        setReviews(data.data);
+                        setLoading(false);
+                    })
+            } else {
+                const result = reviews.filter(review => review.foodName.toLowerCase().includes(text));
+                setReviews(result);
+                setLoading(false);
+            }
+        }, 0);
     }
 
-    if (reviews.length === 0) {
-        return <p className="mt-6 text-center text-gray-500">No reviews found.</p>;
+    // if (reviews.length === 0) {
+    //     return <p className="mt-6 text-center text-gray-500">No reviews found.</p>;
+    // }
+
+    if (loading) {
+        return <Loading />;
     }
 
     return (
@@ -50,27 +58,11 @@ const AllReviews = () => {
                 </div>
             </div>
 
-            {
-                loading && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                        {
-                            Array.from({ length: 9 }).map((_, i) => (
-                                <div key={i} className="skeleton h-64 w-full rounded-xl" />
-                            ))
-                        }
-                    </div>
-                )
-            }
-
-            {
-                !loading && (
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                        {
-                            reviews.map(review => <ReviewCard key={review._id} review={review} />)
-                        }
-                    </div>
-                )
-            }
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                {
+                    reviews.map(review => <ReviewCard key={review._id} review={review} />)
+                }
+            </div>
         </section>
     );
 };
