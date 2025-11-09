@@ -58,7 +58,7 @@ export default function AddReview() {
     };
 
     return (
-        <div className="my-20">
+        <div className="py-20">
             <h4 className="text-[20px] font-medium text-secondary mb-4">
                 <Link className="flex items-center justify-center gap-2" to="/my-reviews"><MoveLeft /> Back To My Reviews</Link>
             </h4>
