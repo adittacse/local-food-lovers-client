@@ -1,11 +1,32 @@
 import { Link, NavLink, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import { ChefHat, Heart, LogOut, PlusCircle, UserRound } from "lucide-react";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
+import { Moon, Sun } from "lucide-react";
 
 export default function Navbar(){
+    const [theme, setTheme] = useState("light");
     const { user, userSignOut } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const saved = localStorage.getItem("app-theme");
+        setTheme(saved || "light");
+    }, []);
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("app-theme", theme);
+    }, [theme]);
+
+    const handleToggleTheme = () => {
+        if (theme === "light") {
+            setTheme("dark");
+        } else {
+            setTheme("light");
+        }
+    }
 
     const links = (
         <>
@@ -52,6 +73,14 @@ export default function Navbar(){
                 </ul>
             </div>
             <div className="navbar-end">
+                <button
+                    onClick={handleToggleTheme}
+                    className="btn btn-ghost btn-circle"
+                    aria-label="Toggle theme"
+                    title="Toggle theme"
+                >
+                    {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+                </button>
                 {
                     user ? <>
                         <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
