@@ -36,7 +36,7 @@ export default function Navbar(){
                 user && <>
                     <li><NavLink to="/add-review"><PlusCircle className='w-4 h-4'/>Add Review</NavLink></li>
                     <li><NavLink to="/my-reviews"><UserRound className='w-4 h-4'/>My Reviews</NavLink></li>
-                    <li><NavLink to="/favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
+                    <li><NavLink to="/my-favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
                 </>
             }
         </>
