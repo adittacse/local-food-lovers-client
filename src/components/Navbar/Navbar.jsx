@@ -37,7 +37,6 @@ export default function Navbar(){
                 user && <>
                     <li><NavLink to="/add-review"><PlusCircle className='w-4 h-4'/>Add Review</NavLink></li>
                     <li><NavLink to="/my-reviews"><UserRound className='w-4 h-4'/>My Reviews</NavLink></li>
-                    <li><NavLink to="/my-favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
                 </>
             }
         </>
@@ -91,9 +90,20 @@ export default function Navbar(){
                 </button>
                 {
                     user ? <>
-                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
-                            <img className="rounded-full w-10 h-10 mr-2" src={user?.photoURL || user?.providerData?.[0]?.photoURL} alt="User image"/>
+                        <div className="dropdown dropdown-end z-10 mr-2">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src={user?.photoURL || user?.providerData?.[0]?.photoURL}
+                                        alt="User image" />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex="-1"
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                <li><NavLink to="/my-favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
+                            </ul>
                         </div>
+
                         <button onClick={handleLogout} className="btn btn-primary">Logout</button>
                     </> : <>
                         <Link to="/login" className="btn btn-secondary mr-2">
