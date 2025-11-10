@@ -1,9 +1,9 @@
-import {Link, useNavigate} from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Heart } from "lucide-react";
 import useAxios from "../hooks/useAxios.jsx";
 import Swal from "sweetalert2";
-import {useContext, useEffect, useRef, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext.jsx";
 import useAxiosSecure from "../hooks/useAxiosSecure.jsx";
 
