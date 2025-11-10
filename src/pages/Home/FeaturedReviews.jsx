@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
 import ReviewCard from "../../components/ReviewCard.jsx";
@@ -21,13 +21,16 @@ const FeaturedReviews = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {
-                data.map(r => (
-                    <ReviewCard key={r._id} review={r} />
-                ))
-            }
-        </div>
+        <section className="mt-16">
+            <h2 className="text-2xl md:text-3xl font-bold text-center">Featured Reviews</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                {
+                    data.map(r => (
+                        <ReviewCard key={r._id} review={r} />
+                    ))
+                }
+            </div>
+        </section>
     );
 };
 
