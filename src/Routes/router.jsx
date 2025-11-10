@@ -10,6 +10,7 @@ import ReviewDetails from "../pages/ReviewDetails/ReviewDetails.jsx";
 import MyReviews from "../pages/MyReviews/MyReviews.jsx";
 import MyFavorites from "../pages/MyFavorites/MyFavorites.jsx";
 import EditReview from "../pages/EditReview/EditReview.jsx";
+import NotFound from "../pages/NotFound/NotFound.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const Router = createBrowserRouter([
             {
                 path: "my-favorites",
                 element: <PrivateRoute><MyFavorites /></PrivateRoute>
+            },
+            {
+                path: "*",
+                element: <NotFound />
             }
         ]
     },
