@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import ReviewDetails from "../pages/ReviewDetails/ReviewDetails.jsx";
 import MyReviews from "../pages/MyReviews/MyReviews.jsx";
 import MyFavorites from "../pages/MyFavorites/MyFavorites.jsx";
+import EditReview from "../pages/EditReview/EditReview.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -43,6 +44,11 @@ const Router = createBrowserRouter([
             {
                 path: "my-reviews",
                 element: <PrivateRoute><MyReviews /></PrivateRoute>
+            },
+            {
+                path: "edit-review/:id",
+                loader: ({ params }) => fetch(`http://localhost:3000/reviews/${params.id}`),
+                element: <EditReview />
             },
             {
                 path: "my-favorites",

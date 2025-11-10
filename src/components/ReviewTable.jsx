@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-const ReviewTable = ({ review, handleEditReview, handleDeleteReview }) => {
+const ReviewTable = ({ review, handleDeleteReview }) => {
     const { _id, photo, foodName, rating, restaurantName, location } = review;
 
     return (
@@ -20,7 +20,7 @@ const ReviewTable = ({ review, handleEditReview, handleDeleteReview }) => {
             <td>{location}</td>
             <th>
                 <Link to={`/reviews/${_id}`} className="btn btn-info mr-2">View Details</Link>
-                <button onClick={() => handleEditReview(_id)} className="btn btn-primary mr-2">Edit</button>
+                <Link to={`/edit-review/${_id}`} className="btn btn-primary mr-2">Edit</Link>
                 <button onClick={() => handleDeleteReview(_id)} className="btn btn-error">Delete</button>
             </th>
         </tr>

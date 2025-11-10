@@ -20,13 +20,8 @@ const MyReviews = () => {
         }
     }, [user, axios]);
 
-    const handleEditReview = (_id) => {
-        console.log("Edit id:", _id);
-    }
-
     const handleDeleteReview = (_id) => {
         console.log("deleted id:", _id);
-
 
         // axios.delete(`/reviews/${id}`)
         //     .then(() => {
@@ -63,7 +58,6 @@ const MyReviews = () => {
                         {
                             data.map(review => <ReviewTable key={review._id}
                                                             review={review}
-                                                            handleEditReview={handleEditReview}
                                                             handleDeleteReview={handleDeleteReview} />
                             )
                         }
