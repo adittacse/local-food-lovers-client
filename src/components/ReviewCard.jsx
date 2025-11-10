@@ -8,7 +8,8 @@ import AuthContext from "../contexts/AuthContext.jsx";
 import useAxiosSecure from "../hooks/useAxiosSecure.jsx";
 
 const ReviewCard = ({ review }) => {
-    const { _id, photo, foodName, restaurantName, location, reviewerName, reviewerEmail, rating } = review;
+    const { photo, foodName, restaurantName, location, reviewerName, rating } = review;
+    const reviewId = review.reviewId || review._id;
     const axios = useAxios();
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
@@ -19,14 +20,14 @@ const ReviewCard = ({ review }) => {
         if (user) {
             axiosSecure.get("/favorites/exists", {
                 params: {
-                    reviewId: _id
+                    reviewId: reviewId
                 }
             })
                 .then(data => {
                     setIsFav(data.data);
                 })
         }
-    }, [user]);
+    }, [user, reviewId, axiosSecure]);
 
     // rating icon
     const full = Math.max(0, Math.min(5, Math.floor(rating)));
@@ -35,15 +36,8 @@ const ReviewCard = ({ review }) => {
 
     const handleFavorite = () => {
         const favoriteReview = {
-            reviewId: _id,
-            photo,
-            foodName,
-            restaurantName,
-            location,
-            reviewerName,
-            reviewerEmail,
-            favoriteUserEmail: user?.email,
-            rating
+            reviewId: reviewId,
+            favoriteUserEmail: user?.email
         }
 
         axios.post("/favorites", favoriteReview)
@@ -69,7 +63,7 @@ const ReviewCard = ({ review }) => {
     }
 
     const handleUnfavorite = () => {
-        axios.delete(`/favorites/${_id}`, {
+        axios.delete(`/favorites/${reviewId}`, {
             method: "DELETE"
         })
             .then(data => {
@@ -121,7 +115,7 @@ const ReviewCard = ({ review }) => {
                         }
                         <span className="text-sm opacity-80 font-medium">{rating}</span>
                     </div>
-                    <Link to={`/reviews/${_id}`} className="btn btn-primary btn-sm">View Details</Link>
+                    <Link to={`/reviews/${reviewId}`} className="btn btn-primary btn-sm">View Details</Link>
                 </div>
             </div>
         </div>
