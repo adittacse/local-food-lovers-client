@@ -18,9 +18,16 @@ const Register = () => {
         const email = e.target.email.value;
         const photo = e.target.photo.value;
         const password = e.target.password.value;
+        const confirmPassword = e.target.confirmPassword.value;
 
         setSuccess("");
         setError("");
+
+        if (password !== confirmPassword) {
+            toast.error("Passwords do not matched");
+            setError("Passwords do not matched");
+            return;
+        }
 
         const lengthPattern = /^.{6,}$/;
         const upperCasePattern = /^(?=.*[A-Z]).+$/;
@@ -46,7 +53,7 @@ const Register = () => {
                     displayName: displayName, photoURL: photo
                 })
                     .then(() => {
-                        setUser({...result.user, displayName: name, photoURL: photo});
+                        setUser({ ...result.user, displayName, photoURL: photo });
                         toast.success("Registered successfully!");
                         setSuccess("Registered successfully!");
                         navigate(location?.state || "/", { replace: true });
@@ -105,16 +112,19 @@ const Register = () => {
                         <fieldset className="fieldset">
                             {/*name*/}
                             <label className="label text-secondary">Name</label>
-                            <input name="name" type="text" className="input" placeholder="Your Name" />
+                            <input name="name" type="text" className="input" placeholder="Your Name" required />
                             {/*email*/}
                             <label className="label text-secondary">Email</label>
-                            <input name="email" type="email" className="input" placeholder="Your Email" />
+                            <input name="email" type="email" className="input" placeholder="Your Email" required />
                             {/*photo*/}
                             <label className="label text-secondary">Image-URL</label>
-                            <input name="photo" type="text" className="input" placeholder="Your Image URL" />
+                            <input name="photo" type="text" className="input" placeholder="Your Image URL" required />
                             {/*password*/}
                             <label className="label text-secondary">Password</label>
-                            <input name="password" type="password" className="input" placeholder="******" />
+                            <input name="password" type="password" className="input" placeholder="******" required />
+                            {/* confirm password */}
+                            <label className="label text-secondary">Confirm Password</label>
+                            <input name="confirmPassword" type="password" className="input" placeholder="******" required />
                             <button className="btn btn-primary font-semibold mt-4">Register</button>
                         </fieldset>
                     </form>
