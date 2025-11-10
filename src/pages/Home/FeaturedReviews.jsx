@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
 import ReviewCard from "../../components/ReviewCard.jsx";
-import {Link} from "react-router";
+import { Link } from "react-router";
 
 const FeaturedReviews = () => {
     const [data, setData] = useState([]);
