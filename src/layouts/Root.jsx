@@ -4,11 +4,13 @@ import Footer from "../components/Footer/Footer.jsx";
 
 const Root = () => {
     return (
-        <div>
-            <Navbar />
-            <div className="bg-base-300">
+        <div className="min-h-screen">
+            <header>
+                <Navbar />
+            </header>
+            <main className="container bg-base-300 py-8">
                 <Outlet />
-            </div>
+            </main>
             <Footer />
         </div>
     );
