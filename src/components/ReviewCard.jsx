@@ -3,19 +3,30 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Heart } from "lucide-react";
 import useAxios from "../hooks/useAxios.jsx";
 import Swal from "sweetalert2";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import AuthContext from "../contexts/AuthContext.jsx";
+import useAxiosSecure from "../hooks/useAxiosSecure.jsx";
 
 const ReviewCard = ({ review }) => {
     const { _id, photo, foodName, restaurantName, location, reviewerName, reviewerEmail, rating } = review;
     const axios = useAxios();
+    const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
     const [isFav, setIsFav] = useState(false);
 
-    // check if already in favorite list for red heart
-    // useEffect(() => {
-    //     axios.get("/favorites")
-    // }, []);
+    // default check if already in favorite list for red heart
+    useEffect(() => {
+        if (user) {
+            axiosSecure.get("/favorites/exists", {
+                params: {
+                    reviewId: _id
+                }
+            })
+                .then(data => {
+                    setIsFav(data.data);
+                })
+        }
+    }, [user]);
 
     // rating icon
     const full = Math.max(0, Math.min(5, Math.floor(rating)));
