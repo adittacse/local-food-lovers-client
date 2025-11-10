@@ -5,6 +5,7 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Moon, Sun } from "lucide-react";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 export default function Navbar(){
     const [theme, setTheme] = useState("light");
@@ -45,14 +46,7 @@ export default function Navbar(){
     const handleLogout = () => {
         userSignOut()
             .then(() => {
-                // user signed out
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Signed out",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                toast.success("Signed out");
             })
             .catch((error) => {
                 Swal.fire({

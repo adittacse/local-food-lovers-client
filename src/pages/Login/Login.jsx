@@ -7,10 +7,31 @@ import toast from "react-hot-toast";
 const Login = () => {
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
-    const { setUser, googleSignIn } = useContext(AuthContext);
+    const { setUser, userSignInUser, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const axios = useAxios();
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        setSuccess("");
+        setError("");
+
+        userSignInUser(email, password)
+            .then((result) => {
+                setUser(result.user);
+                toast.success("Logged in successfully!");
+                setSuccess("Logged in successfully!");
+                navigate(location?.state || "/", { replace: true });
+            })
+            .catch((error) => {
+                toast.error(error.message);
+                setError(error.message);
+            });
+    }
 
     const handleGoogleLogin = () => {
         setSuccess("");
@@ -29,14 +50,14 @@ const Login = () => {
                     .then(data => {
                         if (data.data.insertedId || data.data.message === "User already exists.") {
                             setUser(result.user);
-                            toast("Logged in successfully!");
+                            toast.success("Logged in successfully!");
                             setSuccess("Logged in successfully!");
-                            navigate(location?.state || "/", {replace: true});
+                            navigate(location?.state || "/", { replace: true });
                         }
                     })
             })
             .catch((error) => {
-                toast(error.message);
+                toast.error(error.message);
                 setError(error.message);
             });
     }
@@ -51,7 +72,7 @@ const Login = () => {
                             Don't have an account? <Link state={location?.state} className="primary-text" to="/register">Register Now</Link>
                         </p>
                     </div>
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <fieldset className="fieldset">
                             {/*email*/}
                             <label className="label text-secondary">Email</label>

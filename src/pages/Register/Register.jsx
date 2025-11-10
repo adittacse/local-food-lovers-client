@@ -27,15 +27,15 @@ const Register = () => {
         const lowerCasePattern = /^(?=.*[a-z]).+$/;
 
         if (!lengthPattern.test(password)) {
-            toast("Password must be at least 6 characters");
+            toast.error("Password must be at least 6 characters");
             setError("Password must be at least 6 characters");
             return;
         } else if (!upperCasePattern.test(password)) {
-            toast("Password must have at least one uppercase character");
+            toast.error("Password must have at least one uppercase character");
             setError("Password must have at least one uppercase character");
             return;
         } else if (!lowerCasePattern.test(password)) {
-            toast("Password must have at least one lowercase character");
+            toast.error("Password must have at least one lowercase character");
             setError("Password must have at least one lowercase character");
             return;
         }
@@ -47,16 +47,17 @@ const Register = () => {
                 })
                     .then(() => {
                         setUser({...result.user, displayName: name, photoURL: photo});
+                        toast.success("Registered successfully!");
                         setSuccess("Registered successfully!");
                         navigate(location?.state || "/", { replace: true });
                     })
                     .catch((error) => {
-                        toast(error.message);
+                        toast.error(error.message);
                         setError(error.message);
                     });
             })
             .catch((error) => {
-                toast(error.message);
+                toast.error(error.message);
                 setError(error.message);
             });
     }
@@ -78,12 +79,14 @@ const Register = () => {
                     .then(data => {
                         if (data.data.insertedId || data.data.message === "User already exists.") {
                             setUser(result.user);
+                            toast.success("Logged in successfully!");
                             setSuccess("Logged in successfully!");
                             navigate(location?.state || "/", {replace: true});
                         }
                     })
             })
             .catch((error) => {
+                toast.error(error.message);
                 setError(error.message);
             });
     }
