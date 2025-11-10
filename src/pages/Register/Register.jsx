@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import useAxios from "../../hooks/useAxios.jsx";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const [success, setSuccess] = useState("");
@@ -26,12 +27,15 @@ const Register = () => {
         const lowerCasePattern = /^(?=.*[a-z]).+$/;
 
         if (!lengthPattern.test(password)) {
+            toast("Password must be at least 6 characters");
             setError("Password must be at least 6 characters");
             return;
         } else if (!upperCasePattern.test(password)) {
+            toast("Password must have at least one uppercase character");
             setError("Password must have at least one uppercase character");
             return;
         } else if (!lowerCasePattern.test(password)) {
+            toast("Password must have at least one lowercase character");
             setError("Password must have at least one lowercase character");
             return;
         }
@@ -47,10 +51,12 @@ const Register = () => {
                         navigate(location?.state || "/", { replace: true });
                     })
                     .catch((error) => {
+                        toast(error.message);
                         setError(error.message);
                     });
             })
             .catch((error) => {
+                toast(error.message);
                 setError(error.message);
             });
     }

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAxios from "../../hooks/useAxios.jsx";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [success, setSuccess] = useState("");
@@ -28,12 +29,14 @@ const Login = () => {
                     .then(data => {
                         if (data.data.insertedId || data.data.message === "User already exists.") {
                             setUser(result.user);
+                            toast("Logged in successfully!");
                             setSuccess("Logged in successfully!");
                             navigate(location?.state || "/", {replace: true});
                         }
                     })
             })
             .catch((error) => {
+                toast(error.message);
                 setError(error.message);
             });
     }
