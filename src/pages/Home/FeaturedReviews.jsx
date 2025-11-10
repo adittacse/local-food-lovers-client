@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
 import ReviewCard from "../../components/ReviewCard.jsx";
+import {Link} from "react-router";
 
 const FeaturedReviews = () => {
     const [data, setData] = useState([]);
@@ -29,6 +30,9 @@ const FeaturedReviews = () => {
                         <ReviewCard key={r._id} review={r} />
                     ))
                 }
+            </div>
+            <div className="flex justify-center mt-6">
+                <Link to="/all-reviews" className="btn btn-primary mt-6">Show All Reviews</Link>
             </div>
         </section>
     );

@@ -3,7 +3,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {Link} from "react-router";
+import { Link } from "react-router";
 
 const slides = [
     { img: "https://images.unsplash.com/photo-1552912470-ee2e96439539?q=80&w=1600", title: "Street Food Adventures", subtitle: "Taste the city like a local" },
