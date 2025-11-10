@@ -3,7 +3,7 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Heart } from "lucide-react";
 import useAxios from "../hooks/useAxios.jsx";
 import Swal from "sweetalert2";
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext.jsx";
 import useAxiosSecure from "../hooks/useAxiosSecure.jsx";
 
@@ -68,14 +68,21 @@ const ReviewCard = ({ review }) => {
             });
     }
 
-    const handleUnfavorite = (_id) => {
-        console.log(_id);
+    const handleUnfavorite = () => {
         axios.delete(`/favorites/${_id}`, {
             method: "DELETE"
         })
             .then(data => {
-                console.log(data.data);
-                // if ()
+                if (data.data.deletedCount) {
+                    setIsFav(false);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Removed From Favorites",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
             })
     }
 
@@ -90,17 +97,12 @@ const ReviewCard = ({ review }) => {
                             <h3 className="card-title text-lg">{foodName}</h3>
                             <p className="text-sm opacity-80">{restaurantName} • {location}</p>
                         </div>
-                        {/*<button onClick={handleFavorite} className="btn">*/}
-                        {/*    <Heart />*/}
-                        {/*</button>*/}
-                        <button
-                            onClick={isFav ? () => handleUnfavorite(_id) : handleFavorite}
+                        <button onClick={isFav ? handleUnfavorite : handleFavorite}
                             className="btn btn-ghost btn-circle"
                             aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
                             title={isFav ? "Remove from favorites" : "Add to favorites"}
                         >
-                            <Heart
-                                className={isFav ? "w-5 h-5 text-red-500" : "w-5 h-5"}
+                            <Heart className={isFav ? "w-5 h-5 text-red-500" : "w-5 h-5"}
                                 fill={isFav ? "currentColor" : "none"}
                             />
                         </button>
