@@ -21,6 +21,21 @@ const Register = () => {
         setSuccess("");
         setError("");
 
+        const lengthPattern = /^.{6,}$/;
+        const upperCasePattern = /^(?=.*[A-Z]).+$/;
+        const lowerCasePattern = /^(?=.*[a-z]).+$/;
+
+        if (!lengthPattern.test(password)) {
+            setError("Password must be at least 6 characters");
+            return;
+        } else if (!upperCasePattern.test(password)) {
+            setError("Password must have at least one uppercase character");
+            return;
+        } else if (!lowerCasePattern.test(password)) {
+            setError("Password must have at least one lowercase character");
+            return;
+        }
+
         createUser(email, password)
             .then((result) => {
                 updateUser({
