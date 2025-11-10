@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import ReviewTable from "../../components/ReviewTable.jsx";
+import Swal from "sweetalert2";
 
 const MyReviews = () => {
     const [data, setData] = useState([]);
@@ -21,16 +22,35 @@ const MyReviews = () => {
     }, [user, axios]);
 
     const handleDeleteReview = (_id) => {
-        console.log("deleted id:", _id);
-
-        // axios.delete(`/reviews/${id}`)
-        //     .then(() => {
-        //         // লোকাল স্টেট আপডেট
-        //         setData(prev => prev.filter(r => r._id !== id));
-        //     })
-        //     .catch(() => {
-        //         alert("Failed to delete. Please try again.");
-        //     });
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/reviews/${_id}`)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your review has been deleted.",
+                            icon: "success"
+                        });
+                        const remainingReviews = data.filter(r => r._id !== _id);
+                        setData(remainingReviews);
+                    })
+                    .catch(() => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Failed to delete. Please try again."
+                        });
+                    });
+            }
+        });
     };
 
     if (loading) {
