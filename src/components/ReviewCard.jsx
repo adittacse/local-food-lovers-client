@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext.jsx";
 import useAxiosSecure from "../hooks/useAxiosSecure.jsx";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, unfavoriteReviewId }) => {
     const { photo, foodName, restaurantName, location, reviewerName, rating } = review;
     const reviewId = review.reviewId || review._id;
     const axios = useAxios();
@@ -63,6 +63,7 @@ const ReviewCard = ({ review }) => {
     }
 
     const handleUnfavorite = () => {
+        unfavoriteReviewId(reviewId);
         axios.delete(`/favorites/${reviewId}`, {
             method: "DELETE"
         })
@@ -77,7 +78,7 @@ const ReviewCard = ({ review }) => {
                         timer: 1500
                     });
                 }
-            })
+            });
     }
 
     return (
