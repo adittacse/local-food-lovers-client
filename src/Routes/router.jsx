@@ -35,7 +35,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "reviews/:id",
-                loader: ({ params }) => fetch(`http://localhost:3000/reviews/${params.id}`),
+                loader: ({ params }) => fetch(`https://local-food-lovers-server.onrender.com/reviews/${params.id}`),
                 element: <ReviewDetails />
             },
             {
@@ -48,7 +48,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "edit-review/:id",
-                loader: ({ params }) => fetch(`http://localhost:3000/reviews/${params.id}`),
+                loader: ({ params }) => fetch(`https://local-food-lovers-server.onrender.com/reviews/${params.id}`),
                 element: <EditReview />
             },
             {
