@@ -4,7 +4,42 @@
 @plugin "daisyui";
 
 .font-roboto {
-     font-family: "Roboto", sans-serif;
-     font-optical-sizing: auto;
-     font-style: normal;
- }
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.primary-text {
+    font-weight: 600;
+    background: linear-gradient(90deg, #7F00FF 0%, #E100FF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-secondary {
+    color: #001931;
+}
+
+.btn-primary {
+    @apply bg-gradient-to-r from-[#7F00FF] to-[#E100FF] border-none text-white;
+}
+
+.btn-primary:hover {
+    @apply opacity-90;
+}
+
+.btn-secondary {
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    border-radius: 4px !important;
+    background:
+            linear-gradient(#fff, #fff) padding-box,                /* fill */
+            linear-gradient(90deg, #7F00FF, #E100FF) border-box;    /* border */
+    color: #632EE3; /* fallback text color */
+}
+
+.btn-secondary:hover {
+    @apply opacity-80;
+}
