@@ -3,7 +3,7 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const ReviewDetails = () => {
     const data = useLoaderData();
-    const { photo, foodName, restaurantName, location, rating, review, reviewerName, date} = data;
+    const { photo, foodName, restaurantName, location, rating, review, reviewerName, date } = data;
 
     // rating icon
     const full = Math.max(0, Math.min(5, Math.floor(rating)));

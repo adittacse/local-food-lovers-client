@@ -74,6 +74,7 @@ const MyReviews = () => {
                             <th>Food Name</th>
                             <th>Rating</th>
                             <th>Restaurant Name</th>
+                            <th>Date</th>
                             <th>Location</th>
                             <th>Actions</th>
                         </tr>

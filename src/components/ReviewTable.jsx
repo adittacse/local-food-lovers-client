@@ -1,7 +1,8 @@
 import { Link } from "react-router";
+import { format } from "date-fns";
 
 const ReviewTable = ({ index, review, handleDeleteReview }) => {
-    const { _id, photo, foodName, rating, restaurantName, location } = review;
+    const { _id, photo, foodName, rating, restaurantName, date, location } = review;
 
     return (
         <tr>
@@ -16,13 +17,13 @@ const ReviewTable = ({ index, review, handleDeleteReview }) => {
                 </div>
             </td>
             <td>
-                <div className="font-bold">{foodName}</div>
+                <Link to={`/reviews/${_id}`} className="font-bold">{foodName}</Link>
             </td>
             <td>{rating}</td>
             <td>{restaurantName}</td>
+            <td>{format(new Date(date), "dd MMM yyyy, h:mm a")}</td>
             <td>{location}</td>
             <th>
-                <Link to={`/reviews/${_id}`} className="btn btn-info mr-2">View Details</Link>
                 <Link to={`/edit-review/${_id}`} className="btn btn-primary mr-2">Edit</Link>
                 <button onClick={() => handleDeleteReview(_id)} className="btn btn-error">Delete</button>
             </th>
