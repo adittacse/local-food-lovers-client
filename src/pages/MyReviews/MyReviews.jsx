@@ -61,21 +61,24 @@ const MyReviews = () => {
         <section className="py-16">
             <h2 className="text-3xl font-bold text-center">My Reviews</h2>
 
-            <div className="overflow-x-auto bg-base-100 mt-10">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                    <tr>
-                        <th>SL No.</th>
-                        <th>Image</th>
-                        <th>Food Name</th>
-                        <th>Rating</th>
-                        <th>Restaurant Name</th>
-                        <th>Location</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            {
+                data.length === 0 ? <div className="flex justify-center items-center">
+                    <h3 className="text-3xl font-bold text-[#627382] mt-20 mb-6">You don't have reviews</h3>
+                </div> : <div className="overflow-x-auto bg-base-100 mt-10">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                        <tr>
+                            <th>SL No.</th>
+                            <th>Image</th>
+                            <th>Food Name</th>
+                            <th>Rating</th>
+                            <th>Restaurant Name</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {
                             data.map((review, index) => <ReviewTable key={review._id}
                                                                      index={index}
@@ -83,9 +86,10 @@ const MyReviews = () => {
                                                                      handleDeleteReview={handleDeleteReview} />
                             )
                         }
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+            }
         </section>
     );
 };

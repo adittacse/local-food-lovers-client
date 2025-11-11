@@ -78,10 +78,6 @@ const AllReviews = () => {
                     : reviews.length === 0 ? (
                         <div className="flex flex-col justify-center items-center min-h-36">
                             <h3 className="font-bold text-4xl text-[#627382] mt-10 mb-6">No Reviews Found</h3>
-
-                            <button onClick={handleShowAllReviews} className="btn font-semibold text-white bg-[linear-gradient(90deg,#632EE3_0%,#9F62F2_100%)] rounded-sm px-[39px] py-[15px]">
-                                Show All Reviews
-                            </button>
                         </div>
                     )
                     : (

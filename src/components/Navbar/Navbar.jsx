@@ -80,7 +80,7 @@ export default function Navbar(){
             </div>
             <div className="navbar-end">
                 <button onClick={handleToggleTheme}
-                    className="btn btn-ghost btn-circle hidden md:block mr-2"
+                    className="btn btn-ghost btn-circle hidden md:flex justify-center mr-2"
                     aria-label="Toggle theme"
                     title="Toggle theme"
                 >

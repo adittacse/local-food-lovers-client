@@ -45,7 +45,7 @@ const ReviewCard = ({ review, unfavoriteReviewId }) => {
             favoriteUserEmail: user?.email
         }
 
-        axios.post("/favorites", favoriteReview)
+        axiosSecure.post("/favorites", favoriteReview)
             .then(data => {
                 if (data.data.duplicated) {
                     Swal.fire({
