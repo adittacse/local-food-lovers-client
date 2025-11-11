@@ -1,21 +1,26 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router";
 import ReviewCard from "../../components/ReviewCard.jsx";
 import useAxios from "../../hooks/useAxios.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
 
+
 const AllReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [pathname, setPathname] = useState("");
     const axios = useAxios();
     const searchRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         axios.get("/reviews")
             .then(data => {
                 setReviews(data.data);
+                setPathname(location.pathname);
                 setLoading(false);
             })
-    }, [axios]);
+    }, [axios, location]);
 
     const handleSearch = () => {
         setLoading(true);
@@ -39,16 +44,6 @@ const AllReviews = () => {
                     setLoading(false);
                 })
         }
-    }
-
-    const handleShowAllReviews = () => {
-        searchRef.current.value = "";
-        setLoading(true);
-        axios.get("/reviews")
-            .then(data => {
-                setReviews(data.data);
-                setLoading(false);
-            })
     }
 
     return (
@@ -83,7 +78,9 @@ const AllReviews = () => {
                     : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                             {
-                                reviews.map(review => <ReviewCard key={review._id} review={review} />)
+                                reviews.map(review => <ReviewCard key={review._id}
+                                                                  review={review}
+                                                                  pathname={pathname} />)
                             }
                         </div>
                     )
