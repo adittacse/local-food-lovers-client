@@ -1,10 +1,13 @@
 import { Link } from "react-router";
 
-const ReviewTable = ({ review, handleDeleteReview }) => {
+const ReviewTable = ({ index, review, handleDeleteReview }) => {
     const { _id, photo, foodName, rating, restaurantName, location } = review;
 
     return (
         <tr>
+            <th>
+                {index + 1}
+            </th>
             <td>
                 <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">

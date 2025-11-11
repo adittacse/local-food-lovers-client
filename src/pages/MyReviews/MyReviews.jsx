@@ -66,6 +66,7 @@ const MyReviews = () => {
                     {/* head */}
                     <thead>
                     <tr>
+                        <th>SL No.</th>
                         <th>Image</th>
                         <th>Food Name</th>
                         <th>Rating</th>
@@ -76,9 +77,10 @@ const MyReviews = () => {
                     </thead>
                     <tbody>
                         {
-                            data.map(review => <ReviewTable key={review._id}
-                                                            review={review}
-                                                            handleDeleteReview={handleDeleteReview} />
+                            data.map((review, index) => <ReviewTable key={review._id}
+                                                                     index={index}
+                                                                     review={review}
+                                                                     handleDeleteReview={handleDeleteReview} />
                             )
                         }
                     </tbody>
