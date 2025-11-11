@@ -58,10 +58,10 @@ const MyReviews = () => {
     }
 
     return (
-        <section className="py-20">
-            <h2 className="text-3xl font-bold text-center mb-6">My Reviews</h2>
+        <section className="py-16">
+            <h2 className="text-3xl font-bold text-center">My Reviews</h2>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto bg-base-100 mt-10">
                 <table className="table">
                     {/* head */}
                     <thead>

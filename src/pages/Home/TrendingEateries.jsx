@@ -10,7 +10,7 @@ const TrendingEateries = () => {
     return (
         <section className="mt-16">
             <h2 className="text-2xl md:text-3xl font-bold text-center">Trending Eateries</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                 {items.map(x=> (
                     <div key={x.name} className="card bg-base-200/40 border border-base-300">
                         <figure className="aspect-[16/10]"><img src={x.img} alt={x.name} className="w-full h-full object-cover"/></figure>

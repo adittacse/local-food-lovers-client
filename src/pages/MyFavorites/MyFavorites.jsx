@@ -30,9 +30,10 @@ const MyFavorites = () => {
     }
 
     return (
-        <div className="py-20">
-            <h2 className="text-3xl font-bold text-center mb-6">My Favourites</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div className="py-16">
+            <h2 className="text-3xl font-bold text-center">My Favourites</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                 {
                     data.length === 0 ? (
                             <div className="flex flex-col justify-center items-center min-h-36">

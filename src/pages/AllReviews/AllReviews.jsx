@@ -52,9 +52,10 @@ const AllReviews = () => {
     }
 
     return (
-        <section className="py-10 px-4 md:px-10 lg:px-20">
+        <div className="py-16">
             <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-center">All Reviews</h2>
+
                 <div className="flex justify-end gap-4 mt-6">
                     <label className="input">
                         <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -91,7 +92,7 @@ const AllReviews = () => {
                         </div>
                     )
             }
-        </section>
+        </div>
     );
 };
 

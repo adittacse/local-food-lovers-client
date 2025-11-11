@@ -11,12 +11,13 @@ const ReviewDetails = () => {
     const empty = 5 - full - (hasHalf ? 1 : 0);
 
     return (
-        <article className="flex flex-col md:flex-row gap-10 items-center max-w-3xl mx-auto py-20">
+        <article className="flex flex-col md:flex-row gap-6 items-center mx-auto py-16">
             <figure>
-                <img src={photo} alt={foodName} className="rounded-2xl w-full h-96"/>
+                <img src={photo} alt={foodName} className="rounded-xl lg:w-11/12 h-96"/>
             </figure>
-            <div className="flex flex-col gap-5">
-                <div className="card bg-white shadow-lg p-2.5">
+
+            <div className="flex flex-col gap-6">
+                <div className="card bg-white shadow-lg p-3">
                     <h1 className="text-2xl font-bold mb-2">{foodName}</h1>
                     <p className="opacity-80 mb-2">{restaurantName} • {location}</p>
                     <hr className="mb-2" />
@@ -34,11 +35,12 @@ const ReviewDetails = () => {
                         <span className="text-sm opacity-80 font-medium">{rating}</span>
                     </div>
                 </div>
-                <div className="card bg-white shadow-lg p-2.5">
+
+                <div className="card bg-white shadow-lg p-3">
                     <p className="text-sm opacity-70">Reviewed by <strong>{reviewerName}</strong> on {new Date(date).toLocaleDateString()}</p>
                 </div>
 
-                <div className="card bg-white shadow-lg p-2.5">
+                <div className="card bg-white shadow-lg p-3">
                     <p><span className="font-medium">Review:</span> {review}</p>
                 </div>
             </div>

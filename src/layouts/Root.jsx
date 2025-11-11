@@ -4,11 +4,11 @@ import Footer from "../components/Footer/Footer.jsx";
 
 const Root = () => {
     return (
-        <div className="min-h-screen">
+        <div className="font-roboto min-h-screen bg-base-300">
             <header>
                 <Navbar />
             </header>
-            <main className="container bg-base-300 py-8">
+            <main className="container flex flex-col w-11/12 mx-auto">
                 <Outlet />
             </main>
             <Footer />

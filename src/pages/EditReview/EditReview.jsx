@@ -53,12 +53,13 @@ const EditReview = () => {
     }
 
     return (
-        <div className="py-20">
-            <h4 className="text-[20px] font-medium text-secondary mb-4">
+        <div className="py-16">
+            <h4 className="text-[20px] font-medium text-secondary">
                 <Link className="flex items-center justify-center gap-2" to="/my-reviews"><MoveLeft /> Back To My Reviews</Link>
             </h4>
-            <h2 className="text-2xl font-bold text-center mb-10">Update A <span className="primary-text">Review</span></h2>
-            <div className="card bg-base-100 w-full max-w-3xl shrink-0 shadow-2xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mt-6">Update A <span className="primary-text">Review</span></h2>
+
+            <div className="card bg-base-100 w-full max-w-3xl shrink-0 shadow-2xl mx-auto mt-10">
                 <div className="card-body">
                     <form onSubmit={handleUpdateReview}>
                         <fieldset className="fieldset">
