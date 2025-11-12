@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const TrendingEateries = () => {
     const items = [
-        {name:'Spicy Lane', area:'Old Town', img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=1200'},
-        {name:'Curry Corner', area:'River View', img:'https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=1200'},
-        {name:'Noodle Hub', area:'Market Street', img:'https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1200'},
+        {name:"Spicy Lane", area:"Old Town", img:"https://i.ibb.co.com/YKpGrmb/Spicy-Lane.jpg"},
+        {name:"Curry Corner", area:"River View", img:"https://i.ibb.co.com/FckCw5h/Curry-Corner.jpg"},
+        {name:"Noodle Hub", area:"Market Street", img:"https://i.ibb.co.com/v4FzdyL1/Noodles.jpg"},
     ];
 
     return (
