@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import ReviewCard from "../../components/ReviewCard.jsx";
 import useAxios from "../../hooks/useAxios.jsx";
@@ -8,7 +8,7 @@ const AllReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // 🔹 filters & sort state
+    // filters & sort state
     const [search, setSearch] = useState("");
     const [locationFilter, setLocationFilter] = useState("");
     const [minRating, setMinRating] = useState("");
@@ -17,7 +17,7 @@ const AllReviews = () => {
     const axios = useAxios();
     const location = useLocation();
 
-    // 🔁 Fetch reviews whenever filter/search/sort changes
+    // Fetch reviews whenever filter/search/sort changes
     useEffect(() => {
         setLoading(true);
 
@@ -41,7 +41,7 @@ const AllReviews = () => {
                 All Reviews
             </h2>
 
-            {/* 🔍 FILTER + SEARCH BAR */}
+            {/* FILTER + SEARCH BAR */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
 
                 {/* Search */}
@@ -90,7 +90,7 @@ const AllReviews = () => {
                 </select>
             </div>
 
-            {/* 🔄 CONTENT */}
+            {/* CONTENT */}
             {
                 loading ? (
                     <div className="grid place-items-center min-h-36 mt-10">

@@ -102,7 +102,7 @@ const ReviewCard = ({ review, pathname, unfavoriteReviewId }) => {
                             <p className="text-sm opacity-80">{restaurantName} • {location}</p>
                         </div>
                         {
-                            (pathname === "/all-reviews" || pathname === "/my-favorites") && <button onClick={isFav ? handleUnfavorite : handleFavorite}
+                            (pathname === "/all-reviews" || pathname === "/dashboard/my-favorites") && <button onClick={isFav ? handleUnfavorite : handleFavorite}
                                                          className="btn btn-ghost btn-circle"
                                                          aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
                                                          title={isFav ? "Remove from favorites" : "Add to favorites"}

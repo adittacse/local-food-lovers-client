@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router";
 import { format } from "date-fns";
 
@@ -32,4 +33,4 @@ const ReviewTable = ({ index, review, handleDeleteReview }) => {
     );
 };
 
-export default ReviewTable;
+export default memo(ReviewTable);

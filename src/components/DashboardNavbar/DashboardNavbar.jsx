@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router";
-import {Menu, LogOut, LayoutDashboard, UserRound, Moon, Sun} from "lucide-react";
+import { Menu, LogOut, LayoutDashboard, UserRound, Moon, Sun } from "lucide-react";
 import {useContext, useEffect, useState} from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import toast from "react-hot-toast";
@@ -37,8 +37,6 @@ export default function DashboardNavbar() {
         }
     };
 
-    const photo = user?.providerData?.[0]?.photoURL || user?.photoURL;
-
     return (
         <div className="navbar bg-base-100 shadow-md px-3 md:px-6 sticky top-0 z-50">
             {/* left */}
@@ -67,7 +65,7 @@ export default function DashboardNavbar() {
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src={photo} alt="User" />
+                            <img src={user?.providerData?.[0]?.photoURL || user?.photoURL} alt="User" />
                         </div>
                     </div>
 

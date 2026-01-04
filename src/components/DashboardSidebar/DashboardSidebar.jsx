@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useRole from "../../hooks/useRole.jsx";
 import Loading from "../Loading/Loading.jsx";
+import { MdOutlineReviews } from "react-icons/md";
+import { GrGroup } from "react-icons/gr";
 
 export default function DashboardSidebar() {
     const { user, userSignOut } = useContext(AuthContext);
@@ -25,9 +27,8 @@ export default function DashboardSidebar() {
             })
     }
 
-    const base =
-        "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-base-200";
-    const active = "bg-base-200 font-semibold";
+    const base = "flex items-center gap-2 px-3 py-2 rounded-lg";
+    const active = "bg-primary text-white font-semibold";
 
     if (roleLoading) {
         return <Loading />;
@@ -64,6 +65,21 @@ export default function DashboardSidebar() {
                         Add Review
                     </NavLink>
                 </li>
+
+                {
+                    role === "admin" && (
+                        <li>
+                            <NavLink
+                                to="/dashboard/all-reviews"
+                                className={({ isActive }) => `${base} ${isActive ? active : ""}`}
+                                end
+                            >
+                                <MdOutlineReviews className="w-4 h-4" />
+                                All reviews
+                            </NavLink>
+                        </li>
+                    )
+                }
 
                 <li>
                     <NavLink
@@ -102,7 +118,7 @@ export default function DashboardSidebar() {
                                 to="/dashboard/manage-users"
                                 className={({ isActive }) => `${base} ${isActive ? active : ""}`}
                             >
-                                <UserRound className="w-4 h-4" />
+                                <GrGroup className="w-4 h-4" />
                                 Manage Users
                             </NavLink>
                         </li>

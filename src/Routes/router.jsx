@@ -16,6 +16,7 @@ import Overview from "../pages/Dashboard/Overview/Overview.jsx";
 import Profile from "../pages/Dashboard/Profile/Profile.jsx";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers.jsx";
 import AdminRoute from "./AdminRoute.jsx";
+import AdminAllReviews from "../pages/Dashboard/AdminAllReviews/AdminAllReviews.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 element: <Overview />
+            },
+            {
+                path: "all-reviews",
+                element: <AdminAllReviews />
             },
             {
                 path: "my-reviews",
