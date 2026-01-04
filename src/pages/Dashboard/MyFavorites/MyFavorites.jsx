@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import useAxiosSecure from "../../hooks/useAxiosSecure.jsx";
-import AuthContext from "../../contexts/AuthContext.jsx";
-import Loading from "../../components/Loading/Loading.jsx";
-import ReviewCard from "../../components/ReviewCard.jsx";
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
+import AuthContext from "../../../contexts/AuthContext.jsx";
+import Loading from "../../../components/Loading/Loading.jsx";
+import ReviewCard from "../../../components/ReviewCard.jsx";
 
 const MyFavorites = () => {
     const [data, setData] = useState([]);
@@ -22,7 +22,7 @@ const MyFavorites = () => {
                     setLoading(false);
                 })
         }
-    }, [user, location]);
+    }, [user, location, axiosSecure]);
 
     const unfavoriteReviewId = (reviewId) => {
         const remainingFavoriteReviews = data.filter(reviews => reviews._id !== reviewId);
@@ -34,7 +34,7 @@ const MyFavorites = () => {
     }
 
     return (
-        <div className="py-16">
+        <div>
             <h2 className="text-3xl font-bold text-center">My Favourites</h2>
 
             {

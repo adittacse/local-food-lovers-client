@@ -24,7 +24,8 @@ const ReviewTable = ({ index, review, handleDeleteReview }) => {
             <td>{format(new Date(date), "dd MMM yyyy, h:mm a")}</td>
             <td>{location}</td>
             <th>
-                <Link to={`/edit-review/${_id}`} className="btn btn-primary mr-2">Edit</Link>
+                <Link to={`/reviews/${_id}`} className="btn btn-secondary mr-2">View</Link>
+                <Link to={`/dashboard/edit-review/${_id}`} className="btn btn-primary mr-2">Edit</Link>
                 <button onClick={() => handleDeleteReview(_id)} className="btn btn-error">Delete</button>
             </th>
         </tr>

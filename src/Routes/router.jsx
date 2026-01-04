@@ -4,13 +4,16 @@ import Home from "../pages/Home/Home.jsx";
 import Login from "../pages/Login/Login.jsx";
 import Register from "../pages/Register/Register.jsx";
 import AllReviews from "../pages/AllReviews/AllReviews.jsx";
-import AddReview from "../pages/AddReview/AddReview.jsx";
+import AddReview from "../pages/Dashboard/AddReview/AddReview.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import ReviewDetails from "../pages/ReviewDetails/ReviewDetails.jsx";
-import MyReviews from "../pages/MyReviews/MyReviews.jsx";
-import MyFavorites from "../pages/MyFavorites/MyFavorites.jsx";
-import EditReview from "../pages/EditReview/EditReview.jsx";
+import MyReviews from "../pages/Dashboard/MyReviews/MyReviews.jsx";
+import MyFavorites from "../pages/Dashboard/MyFavorites/MyFavorites.jsx";
+import EditReview from "../pages/Dashboard/EditReview/EditReview.jsx";
 import NotFound from "../pages/NotFound/NotFound.jsx";
+import DashboardLayout from "../layouts/DashboardLayout.jsx";
+import Overview from "../pages/Dashboard/Overview/Overview.jsx";
+import Profile from "../pages/Dashboard/Profile/Profile.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -39,12 +42,26 @@ const Router = createBrowserRouter([
                 element: <ReviewDetails />
             },
             {
-                path: "add-review",
-                element: <PrivateRoute><AddReview /></PrivateRoute>
+                path: "*",
+                element: <NotFound />
+            }
+        ]
+    },
+    {
+        path: "dashboard",
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        children: [
+            {
+                index: true,
+                element: <Overview />
             },
             {
                 path: "my-reviews",
-                element: <PrivateRoute><MyReviews /></PrivateRoute>
+                element: <MyReviews />
+            },
+            {
+                path: "add-review",
+                element: <AddReview />
             },
             {
                 path: "edit-review/:id",
@@ -53,14 +70,14 @@ const Router = createBrowserRouter([
             },
             {
                 path: "my-favorites",
-                element: <PrivateRoute><MyFavorites /></PrivateRoute>
+                element: <MyFavorites />
             },
             {
-                path: "*",
-                element: <NotFound />
-            }
+                path: "profile",
+                element: <Profile />
+            },
         ]
-    },
+    }
 ]);
 
 export default Router;

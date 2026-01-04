@@ -6,6 +6,7 @@ import AuthContext from "../../contexts/AuthContext.jsx";
 import { Moon, Sun } from "lucide-react";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 export default function Navbar(){
     const [theme, setTheme] = useState("light");
@@ -35,8 +36,11 @@ export default function Navbar(){
             <li><NavLink to="/all-reviews">All Reviews</NavLink></li>
             {
                 user && <>
-                    <li><NavLink to="/add-review"><PlusCircle className='w-4 h-4'/>Add Review</NavLink></li>
-                    <li><NavLink to="/my-reviews"><UserRound className='w-4 h-4'/>My Reviews</NavLink></li>
+                    <li>
+                        <NavLink to="/dashboard">
+                            <MdOutlineDashboardCustomize className='w-4 h-4'/>Dashboard
+                        </NavLink>
+                    </li>
                 </>
             }
         </>
@@ -98,7 +102,9 @@ export default function Navbar(){
                             <ul
                                 tabIndex="-1"
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                <li><NavLink to="/my-favorites"><Heart className='w-4 h-4'/>My Favorites</NavLink></li>
+                                <li>
+                                    <NavLink to="/dashboard"><Heart className='w-4 h-4'/>Dashboard</NavLink>
+                                </li>
                             </ul>
                         </div>
 

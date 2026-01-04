@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios.jsx";
-import Loading from "../../components/Loading/Loading.jsx";
-import AuthContext from "../../contexts/AuthContext.jsx";
-import ReviewTable from "../../components/ReviewTable.jsx";
+import useAxios from "../../../hooks/useAxios.jsx";
+import Loading from "../../../components/Loading/Loading.jsx";
+import AuthContext from "../../../contexts/AuthContext.jsx";
+import ReviewTable from "../../../components/ReviewTable.jsx";
 import Swal from "sweetalert2";
 
 const MyReviews = () => {
@@ -58,7 +58,7 @@ const MyReviews = () => {
     }
 
     return (
-        <section className="py-16">
+        <div>
             <h2 className="text-3xl font-bold text-center">My Reviews</h2>
 
             {
@@ -91,7 +91,7 @@ const MyReviews = () => {
                     </table>
                 </div>
             }
-        </section>
+        </div>
     );
 };
 
