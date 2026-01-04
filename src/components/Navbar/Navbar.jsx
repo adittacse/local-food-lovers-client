@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router";
 import { useEffect, useState } from "react";
-import { ChefHat, Heart, LogOut, PlusCircle, UserRound } from "lucide-react";
+import { ChefHat, Heart } from "lucide-react";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Moon, Sun } from "lucide-react";
@@ -34,6 +34,7 @@ export default function Navbar(){
         <>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/about">About</NavLink></li>
+            <li><NavLink to="/contact">Contact</NavLink></li>
             <li><NavLink to="/all-reviews">All Reviews</NavLink></li>
             {
                 user && <>

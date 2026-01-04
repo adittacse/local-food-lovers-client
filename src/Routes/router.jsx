@@ -18,6 +18,7 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import AdminAllReviews from "../pages/Dashboard/AdminAllReviews/AdminAllReviews.jsx";
 import About from "../pages/About/About.jsx";
+import Contact from "../pages/Contact/Contact.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const Router = createBrowserRouter([
             {
                 path: "about",
                 element: <About />
+            },
+            {
+                path: "contact",
+                element: <Contact />
             },
             {
                 path: "login",
