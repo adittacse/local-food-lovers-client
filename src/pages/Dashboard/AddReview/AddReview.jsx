@@ -75,8 +75,7 @@ export default function AddReview() {
                                     <label className="label">
                                         <span className="label-text text-secondary">Food Name</span>
                                     </label>
-                                    <input name="foodName" type="text" className="input input-bordered w-full"
-                                           placeholder="Fish burger" required />
+                                    <input name="foodName" type="text" className="input input-bordered w-full" required />
                                 </div>
 
                                 {/* restaurant name */}
@@ -84,8 +83,7 @@ export default function AddReview() {
                                     <label className="label">
                                         <span className="label-text text-secondary">Restaurant Name</span>
                                     </label>
-                                    <input name="restaurantName" type="text" className="input input-bordered w-full"
-                                           placeholder="Burger King" required />
+                                    <input name="restaurantName" type="text" className="input input-bordered w-full" required />
                                 </div>
                             </div>
 
@@ -94,7 +92,7 @@ export default function AddReview() {
                                 <label className="label">
                                     <span className="label-text text-secondary">Food Image URL</span>
                                 </label>
-                                <input name="foodImageURL" type="text" className="input input-bordered w-full" placeholder="https://..."/>
+                                <input name="foodImageURL" type="text" className="input input-bordered w-full" />
                             </div>
 
                             {/* 2-column row */}
@@ -105,7 +103,7 @@ export default function AddReview() {
                                         <span className="label-text text-secondary">Rating</span>
                                     </label>
                                     <input name="rating" type="number" step="0.5" min="0" max="5"
-                                           className="input input-bordered w-full" placeholder="Star Rating (0-5)" required />
+                                           className="input input-bordered w-full" required />
                                 </div>
 
                                 {/* location */}
@@ -113,8 +111,7 @@ export default function AddReview() {
                                     <label className="label">
                                         <span className="label-text text-secondary">Restaurant Location</span>
                                     </label>
-                                    <input name="location" type="text" className="input input-bordered w-full"
-                                           placeholder="Chittagong" required />
+                                    <input name="location" type="text" className="input input-bordered w-full" required />
                                 </div>
                             </div>
 
@@ -151,8 +148,7 @@ export default function AddReview() {
                             {/* review */}
                             <div className="form-control w-full mb-5">
                                 <legend className="label text-secondary">Your Review</legend>
-                                <textarea name="review" className="textarea w-full h-24"
-                                          placeholder="I really love their foods. Specially their fish burger." required></textarea>
+                                <textarea name="review" className="textarea w-full h-24" required></textarea>
                             </div>
 
                             <button disabled={submitting} className="btn btn-primary">

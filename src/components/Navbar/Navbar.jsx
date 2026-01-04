@@ -1,16 +1,19 @@
 import { Link, NavLink } from "react-router";
 import { useEffect, useState } from "react";
-import { ChefHat, Heart } from "lucide-react";
+import { ChefHat, Heart, UserRound } from "lucide-react";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import { Moon, Sun } from "lucide-react";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import useRole from "../../hooks/useRole.jsx";
+import Loading from "../Loading/Loading.jsx";
 
 export default function Navbar(){
     const [theme, setTheme] = useState("light");
     const { user, userSignOut } = useContext(AuthContext);
+    const { role, roleLoading } = useRole();
 
     useEffect(() => {
         const saved = localStorage.getItem("app-theme");
@@ -104,8 +107,20 @@ export default function Navbar(){
                             <ul
                                 tabIndex="-1"
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                <li className="px-2 py-1 opacity-70 text-xs">
+                                    {user?.displayName || "User"}
+                                </li>
+
+                                <li className="px-2 py-1 text-xs capitalize">
+                                    {
+                                        roleLoading ? <Loading /> : role
+                                    }
+                                </li>
+
                                 <li>
-                                    <NavLink to="/dashboard"><Heart className='w-4 h-4'/>Dashboard</NavLink>
+                                    <NavLink to="/dashboard/profile">
+                                        <UserRound className="w-4 h-4"/> My Profile
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
