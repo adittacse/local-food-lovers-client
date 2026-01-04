@@ -17,6 +17,7 @@ import Profile from "../pages/Dashboard/Profile/Profile.jsx";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import AdminAllReviews from "../pages/Dashboard/AdminAllReviews/AdminAllReviews.jsx";
+import About from "../pages/About/About.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const Router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />
+            },
+            {
+                path: "about",
+                element: <About />
             },
             {
                 path: "login",
@@ -60,7 +65,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "all-reviews",
-                element: <AdminAllReviews />
+                element: <AdminRoute><AdminAllReviews /></AdminRoute>
             },
             {
                 path: "my-reviews",

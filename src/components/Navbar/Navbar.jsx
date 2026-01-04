@@ -33,6 +33,7 @@ export default function Navbar(){
     const links = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/about">About</NavLink></li>
             <li><NavLink to="/all-reviews">All Reviews</NavLink></li>
             {
                 user && <>
@@ -74,7 +75,7 @@ export default function Navbar(){
                 </div>
                 <Link to="/" className="btn btn-ghost gap-2 text-xl font-extrabold">
                     <ChefHat className="w-6 h-6 hidden md:block text-primary"/>
-                    <span>Local Food Lovers</span>
+                    <span className="primary-text font-bold">Local Food Lovers</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
