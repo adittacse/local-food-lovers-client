@@ -49,6 +49,22 @@ const Register = () => {
 
         createUser(email, password)
             .then((result) => {
+                const newUser = {
+                    displayName: displayName,
+                    email: email,
+                    photoURL: photo
+                }
+                axios.post("/users", newUser)
+                    .then(res => {
+                        if (res.data.insertedId || res.data.message === "User already exists.") {
+                            console.log("User created in the database");
+                        }
+                    })
+                    .catch((error) => {
+                        toast.error(error?.message);
+                        setError(error?.message);
+                    });
+
                 updateUser({
                     displayName: displayName, photoURL: photo
                 })

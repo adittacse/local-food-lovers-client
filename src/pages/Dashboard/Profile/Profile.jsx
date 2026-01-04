@@ -60,7 +60,7 @@ const Profile = () => {
 
     return (
         <div className="max-w-5xl mx-auto space-y-8">
-            <div>
+            <div className="text-center">
                 <h1 className="text-2xl md:text-3xl font-bold">My Profile</h1>
                 <p className="opacity-70 mt-1">
                     View and update your profile information

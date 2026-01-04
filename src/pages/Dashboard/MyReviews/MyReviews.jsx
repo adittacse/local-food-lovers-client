@@ -69,7 +69,7 @@ const MyReviews = () => {
                         {/* head */}
                         <thead>
                         <tr>
-                            <th>SL No.</th>
+                            <th>Sl.</th>
                             <th>Image</th>
                             <th>Food Name</th>
                             <th>Rating</th>

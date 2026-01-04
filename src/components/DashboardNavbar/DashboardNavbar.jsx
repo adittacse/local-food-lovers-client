@@ -40,7 +40,7 @@ export default function DashboardNavbar() {
     const photo = user?.providerData?.[0]?.photoURL || user?.photoURL;
 
     return (
-        <div className="navbar bg-base-100 border-b px-3 md:px-6 sticky top-0 z-50">
+        <div className="navbar bg-base-100 shadow-md px-3 md:px-6 sticky top-0 z-50">
             {/* left */}
             <div className="flex-1 gap-2">
                 {/* mobile drawer button */}

@@ -14,6 +14,8 @@ import NotFound from "../pages/NotFound/NotFound.jsx";
 import DashboardLayout from "../layouts/DashboardLayout.jsx";
 import Overview from "../pages/Dashboard/Overview/Overview.jsx";
 import Profile from "../pages/Dashboard/Profile/Profile.jsx";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers.jsx";
+import AdminRoute from "./AdminRoute.jsx";
 
 const Router = createBrowserRouter([
     {
@@ -75,6 +77,10 @@ const Router = createBrowserRouter([
             {
                 path: "profile",
                 element: <Profile />
+            },
+            {
+                path: "manage-users",
+                element: <AdminRoute><ManageUsers /></AdminRoute>
             },
         ]
     }

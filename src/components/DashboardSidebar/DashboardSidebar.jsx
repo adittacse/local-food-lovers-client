@@ -4,9 +4,12 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useRole from "../../hooks/useRole.jsx";
+import Loading from "../Loading/Loading.jsx";
 
 export default function DashboardSidebar() {
     const { user, userSignOut } = useContext(AuthContext);
+    const { role, roleLoading } = useRole();
 
     const handleLogout = () => {
         userSignOut()
@@ -25,6 +28,10 @@ export default function DashboardSidebar() {
     const base =
         "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-base-200";
     const active = "bg-base-200 font-semibold";
+
+    if (roleLoading) {
+        return <Loading />;
+    }
 
     return (
         <aside className="w-64 min-h-full bg-base-100 border-r">
@@ -87,6 +94,20 @@ export default function DashboardSidebar() {
                         My Profile
                     </NavLink>
                 </li>
+
+                {
+                    role === "admin" && (
+                        <li>
+                            <NavLink
+                                to="/dashboard/manage-users"
+                                className={({ isActive }) => `${base} ${isActive ? active : ""}`}
+                            >
+                                <UserRound className="w-4 h-4" />
+                                Manage Users
+                            </NavLink>
+                        </li>
+                    )
+                }
 
                 <button onClick={handleLogout} className="btn btn-sm btn-error btn-block mt-4">
                     Logout
