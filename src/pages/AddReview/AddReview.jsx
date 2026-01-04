@@ -16,7 +16,7 @@ export default function AddReview() {
         const photo = e.target.foodImageURL.value;
         const restaurantName = e.target.restaurantName.value;
         const location = e.target.location.value;
-        const rating = e.target.rating.value;
+        const rating = parseFloat(e.target.rating.value);
         const review = e.target.review.value;
         const reviewerName = e.target.name.value;
         const reviewerEmail = e.target.email.value;
