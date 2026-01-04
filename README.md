@@ -4,6 +4,19 @@ Discover, review, and favorite the best local eats around you.
 
 **Live Site:** https://local-food-lovers-client.web.app/
 
+---
+
+## 🔐 Admin Login Credentials
+- **Admin Email:** admin@gmail.com
+- **Admin Password:** Admin@25#
+
+---
+
+## 🔐 User Login Credentials
+- **Staff Email:** demo@gmail.com
+- **Staff Password:** Demo@25#
+
+---
 
 ## Key Features
 
