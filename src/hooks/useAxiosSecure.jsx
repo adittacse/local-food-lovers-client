@@ -5,7 +5,8 @@ import AuthContext from "../contexts/AuthContext.jsx";
 import Swal from "sweetalert2";
 
 const instance = axios.create({
-    baseURL: "https://local-food-lovers-server.onrender.com",
+    // baseURL: "https://local-food-lovers-server.onrender.com",
+    baseURL: "http://localhost:3001",
 });
 
 const useAxiosSecure = () => {
